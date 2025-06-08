@@ -13,6 +13,10 @@ class ConfigurationBase(BaseModel):
     prioritize_normal_risk: Optional[bool] = None
     filter_old_signals_enabled: Optional[bool] = None
     signal_validity_minutes: Optional[int] = Field(None, ge=1)
+    
+    autotrade_enabled: Optional[bool] = None
+    autotrade_interval_minutes: Optional[int] = Field(None, ge=1)
+
 
 class ConfigurationUpdate(ConfigurationBase):
     pass

@@ -41,17 +41,31 @@ const RiskBadge = ({ level }) => {
 
 export default function SignalCard({ signal }) {
     const [isExpanded, setIsExpanded] = useState(false);
-    // --- BARU: State untuk menangani feedback dari tombol ---
     const [activationStatus, setActivationStatus] = useState({ loading: false, message: '', error: false });
 
+    // --- FUNGSI HANDLEACTIVATE DIPERBARUI ---
     const handleActivate = async () => {
         setActivationStatus({ loading: true, message: 'Activating...', error: false });
         try {
             await apiClient.post('/trades/activate', { signal_id: signal.id });
             setActivationStatus({ loading: false, message: 'Monitoring Activated!', error: false });
         } catch (err) {
-            console.error("Activation failed:", err);
-            const errorMessage = err.response?.data?.detail || "Activation failed.";
+            console.error("Activation failed:", err.response); // Log seluruh respons error untuk debug
+            
+            // Logika baru untuk mem-parsing error
+            let errorMessage = "An unknown error occurred.";
+            if (err.response?.data?.detail) {
+                const detail = err.response.data.detail;
+                // Jika detail adalah array (khas error 422), ambil pesan pertama
+                if (Array.isArray(detail) && detail.length > 0 && detail[0].msg) {
+                    errorMessage = detail[0].msg;
+                } 
+                // Jika detail adalah string (khas error 400, 404, 409)
+                else if (typeof detail === 'string') {
+                    errorMessage = detail;
+                }
+            }
+            
             setActivationStatus({ loading: false, message: errorMessage, error: true });
         }
     };
@@ -100,7 +114,7 @@ export default function SignalCard({ signal }) {
                     <div className="mt-4 pt-4 border-t border-gray-700">
                         <button 
                             onClick={handleActivate}
-                            disabled={activationStatus.loading || activationStatus.message}
+                            disabled={activationStatus.loading || (activationStatus.message && !activationStatus.error)}
                             className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors disabled:bg-gray-600 disabled:cursor-not-allowed"
                         >
                             {activationStatus.loading ? 'Activating...' : 'Aktifkan Otomatisasi'}

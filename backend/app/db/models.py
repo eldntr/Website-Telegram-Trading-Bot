@@ -28,6 +28,9 @@ class UserConfiguration(Document):
     signal_validity_minutes: int = 30
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
+    autotrade_enabled: bool = False
+    autotrade_interval_minutes: int = Field(default=5, ge=3) # Minimal 3 menit
+
     class Settings:
         name = "user_configurations"
 

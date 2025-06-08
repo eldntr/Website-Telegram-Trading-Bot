@@ -53,6 +53,24 @@ export default function BotConfigurationForm({ initialData, onSave, isLoading })
           <p className="mt-1 text-sm text-gray-400">Customize your bot's core trading parameters.</p>
         </div>
 
+        {/* Autotrade Settings */}
+        <div>
+          <h3 className="text-md font-medium leading-6 text-white">Automation</h3>
+           <div className="mt-4 space-y-4">
+              <Toggle 
+                label="Enable End-to-End Autotrade"
+                enabled={config.autotrade_enabled}
+                onChange={() => handleToggleChange('autotrade_enabled')}
+              />
+              {config.autotrade_enabled && (
+                <div className="sm:col-span-3 pl-16">
+                    <label htmlFor="autotrade_interval_minutes" className="block text-sm font-medium text-gray-300">Run Cycle Every (minutes)</label>
+                    <input type="number" name="autotrade_interval_minutes" id="autotrade_interval_minutes" value={config.autotrade_interval_minutes || ''} onChange={handleChange} className="mt-1 block w-full max-w-xs rounded-md border-gray-600 bg-gray-700 text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                </div>
+              )}
+           </div>
+        </div>
+
         {/* USDT Amount per Trade */}
         <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
           <div className="sm:col-span-3">

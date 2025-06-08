@@ -18,17 +18,17 @@ services:
       retries: 5
       start_period: 20s
 
-  # bot:
-  #   build:
-  #     context: .
-  #     dockerfile: bot.Dockerfile
-  #   env_file:
-  #     - ./.env
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     mongodb:
-  #       condition: service_healthy
+  bot:
+    build:
+      context: .
+      dockerfile: tg-auto-trader\bot.Dockerfile
+    env_file:
+      - ./.env
+    volumes:
+      - .:/app
+    depends_on:
+      mongodb:
+        condition: service_healthy
   
   backend:
     build:

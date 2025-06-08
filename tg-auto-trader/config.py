@@ -12,8 +12,8 @@ TARGET_CHAT_ID = int(os.getenv("TELEGRAM_TARGET_CHAT_ID", 0))
 SESSION_NAME = "trading_bot_session"
 
 # Konfigurasi Binance
-BINANCE_API_KEY = os.getenv("BINANCE_API_KEY")
-BINANCE_API_SECRET = os.getenv("BINANCE_API_SECRET")
+BINANCE_API_KEY = None
+BINANCE_API_SECRET = None
 
 # Konfigurasi Trading
 USDT_AMOUNT_PER_TRADE = float(os.getenv("USDT_AMOUNT_PER_TRADE", 11.0))
