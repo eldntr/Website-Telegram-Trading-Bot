@@ -49,7 +49,7 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300">Password</_label>
+            <label className="block text-sm font-medium text-gray-300">Password</label>
             <input
               type="password"
               value={password}
