@@ -4,7 +4,10 @@ uvicorn[standard]
 motor
 beanie
 pydantic[email]
+pydantic-settings
 passlib[bcrypt]
 python-jose[cryptography]
 python-dotenv
 cryptography
+python-multipart
+requests

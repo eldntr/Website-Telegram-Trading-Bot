@@ -5,7 +5,7 @@ from app.db.models import User, Trade
 from app.schemas.dashboard import DashboardSummary
 from app.core.security import decrypt_data
 from app.core.account import AdaptedAccountManager
-from binance.client import BinanceClient
+from app.binance.client import BinanceClient
 
 router = APIRouter()
 

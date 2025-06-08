@@ -1,6 +1,6 @@
 # backend/app/db/models.py
 from typing import Optional, List, Any, Dict
-from datetime import datetime
+from datetime import datetime, timedelta
 from beanie import Document, Link, Indexed
 from pydantic import Field, EmailStr
 

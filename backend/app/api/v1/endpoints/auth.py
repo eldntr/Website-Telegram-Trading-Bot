@@ -28,10 +28,7 @@ async def register_user(user_in: UserCreate):
     default_config = UserConfiguration(user_id=new_user.id)
     await default_config.insert()
     
-    # We need to manually convert the ObjectId to a string for the Pydantic model
-    user_dict = new_user.dict()
-    user_dict['_id'] = str(user_dict['_id'])
-    return UserOut(**user_dict)
+    return new_user
 
 
 @router.post("/login", response_model=Token)

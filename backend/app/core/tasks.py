@@ -7,7 +7,7 @@ from datetime import datetime
 from app.core.trader import AdaptedTradingStrategy, AdaptedTrader
 from app.core.security import decrypt_data
 from app.db.models import User, NewSignal, Trade, UserConfiguration
-from binance.client import BinanceClient
+from app.binance.client import BinanceClient
 from app.core.websockets import manager # <-- Import manager
 
 # Dictionary untuk melacak task yang sedang berjalan untuk mencegah duplikasi

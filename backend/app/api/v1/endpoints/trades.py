@@ -8,7 +8,7 @@ from app.core.tasks import monitor_signal_for_entry, running_tasks
 from app.db.models import User, NewSignal, Trade
 from app.schemas.trade import TradeActivate, TradeOut
 from app.core.security import decrypt_data
-from binance.client import BinanceClient
+from app.binance.client import BinanceClient
 
 router = APIRouter()
 

@@ -1,7 +1,7 @@
 # backend/app/core/trader.py
 import time
 from typing import Dict, Any, Tuple
-from binance.client import BinanceClient
+from app.binance.client import BinanceClient
 from app.db.models import NewSignal
 
 class AdaptedTradingStrategy:

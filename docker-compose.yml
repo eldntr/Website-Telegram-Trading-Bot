@@ -5,7 +5,7 @@ services:
     image: mongo:latest
     container_name: mongodb
     ports:
-      - "127.0.0.1:27017:27017"
+      - "127.0.0.1:27019:27017"
     volumes:
       - mongo-data:/data/db
     environment:
@@ -40,25 +40,26 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
+      - ./tg-auto-trader/binance:/app/app/binance 
     depends_on:
       mongodb:
         condition: service_healthy
     restart: always
 
   # --- BARU: Layanan Frontend Next.js ---
-  frontend:
-    build:
-      context: ./frontend
-    container_name: frontend-dashboard
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules # Mencegah folder node_modules lokal menimpa yang ada di kontainer
-      - /app/.next
-    depends_on:
-      - backend # Frontend baru akan jalan setelah backend siap
-    restart: always
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   container_name: frontend-dashboard
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules # Mencegah folder node_modules lokal menimpa yang ada di kontainer
+  #     - /app/.next
+  #   depends_on:
+  #     - backend # Frontend baru akan jalan setelah backend siap
+  #   restart: always
 
   # dashboard:
   #   build:

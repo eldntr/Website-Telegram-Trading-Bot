@@ -17,9 +17,9 @@ async def get_configuration(current_user: User = Depends(get_current_user)):
     if not config:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Configuration not found.")
     
-    # Konversi Link ke string ID untuk response model
+    # Buat dictionary secara manual dan konversi Link ke string
     config_dict = config.dict()
-    config_dict['user_id'] = str(config.user_id.id)
+    config_dict['user_id'] = str(config.user_id.ref.id) # <-- Gunakan .ref.id
     return config_dict
 
 
@@ -43,8 +43,9 @@ async def update_configuration(
     
     await config.update({"$set": update_data})
     
-    # Muat ulang data yang sudah diupdate untuk respons
     updated_config = await UserConfiguration.get(config.id)
+    
+    # Buat dictionary secara manual juga untuk respons update
     updated_config_dict = updated_config.dict()
-    updated_config_dict['user_id'] = str(updated_config.user_id.id)
+    updated_config_dict['user_id'] = str(updated_config.user_id.ref.id) # <-- Gunakan .ref.id
     return updated_config_dict

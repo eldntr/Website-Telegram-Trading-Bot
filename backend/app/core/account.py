@@ -1,6 +1,6 @@
 # backend/app/core/account.py
 from typing import Dict, Any, Optional
-from binance.client import BinanceClient
+from app.binance.client import BinanceClient
 
 class AdaptedAccountManager:
     """

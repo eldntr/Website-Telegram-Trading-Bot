@@ -141,7 +141,7 @@ export default function BotConfigurationForm({ initialData, onSave, isLoading })
             {config.stuck_trade_enabled && (
                 <div className="sm:col-span-3 pl-16">
                     <label htmlFor="stuck_trade_duration_hours" className="block text-sm font-medium text-gray-300">Stuck Duration (hours)</label>
-                    <input type="number" name="stuck_trade_duration_hours" id="stuck_trade_duration_hours" value={config.stuck_trade_duration_hours || ''} onChange={handleChange} className="mt-1 block w-full max-w-xs rounded-md border-gray-600 bg-gamma-700 text-white shadow-sm"/>
+                    <input type="number" name="stuck_trade_duration_hours" id="stuck_trade_duration_hours" value={config.stuck_trade_duration_hours || ''} onChange={handleChange} className="mt-1 block w-full max-w-xs rounded-md border-gray-600 bg-gray-700 text-white shadow-sm"/>
                 </div>
             )}
         </div>

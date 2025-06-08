@@ -15,12 +15,11 @@ class UserOut(BaseModel):
     id: str = Field(..., alias="_id")
     email: EmailStr
     created_at: datetime
-    # BARU: Menambahkan status apakah kunci API sudah diatur atau belum
     has_binance_keys: bool = False
 
     class Config:
-        orm_mode = True
-        allow_population_by_field_name = True
+        from_attributes = True  # <-- Diubah
+        validate_by_name = True # <-- Diubah
         json_encoders = {
             datetime: lambda dt: dt.isoformat()
         }

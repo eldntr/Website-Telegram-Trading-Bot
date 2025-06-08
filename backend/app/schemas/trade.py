@@ -22,8 +22,8 @@ class TradeOut(BaseModel):
     closed_at: Optional[datetime] = None
 
     class Config:
-        orm_mode = True
-        allow_population_by_field_name = True
+        from_attributes = True  # <-- Diubah
+        validate_by_name = True # <-- Diubah
         json_encoders = {
             datetime: lambda dt: dt.isoformat()
         }
