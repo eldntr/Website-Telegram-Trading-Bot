@@ -1,0 +1,10 @@
+# backend/requirements.txt
+fastapi
+uvicorn[standard]
+motor
+beanie
+pydantic[email]
+passlib[bcrypt]
+python-jose[cryptography]
+python-dotenv
+cryptography
