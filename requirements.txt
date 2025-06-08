@@ -1,0 +1,7 @@
+telethon
+python-dotenv
+requests
+streamlit
+streamlit-autorefresh
+pandas
+pymongo[srv]
